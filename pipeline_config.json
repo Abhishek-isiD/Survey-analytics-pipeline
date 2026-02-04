@@ -1,0 +1,66 @@
+{
+    "required_fields": [
+        "Make",
+        "Doors",
+        "Colour",
+        "Odometer (KM)",
+        "Price"
+    ],
+    "column_types": {
+        "Odometer (KM)": "integer",
+        "Price": "integer",
+        "Doors": "integer",
+        "Colour": "category"
+    },
+    "weight_column": null,
+    "custom_module_settings": {
+        "performance_settings": {
+            "run_pca_analysis": true,
+            "run_normality_plots": false
+        },
+        "cleaner": {
+            "numeric_cols_for_imputation": [
+                "Odometer (KM)",
+                "Price",
+                "Doors"
+            ],
+            "categorical_cols_for_imputation": [
+                "Colour"
+            ],
+            "row_null_threshold": 52,
+            "column_null_threshold": 51,
+            "rules_based_imputation": [],
+            "imputation_strategy": "mice",
+            "mice_max_iter": 5,
+            "mice_n_estimators": 10,
+            "drop_outliers": true,
+            "outlier_detection_strategy": "isolation_forest",
+            "outlier_removal_percent": 5.08
+        },
+        "weighting": {
+            "analysis_columns": [
+                "Colour",
+                "Make",
+                "Doors",
+                "Odometer (KM)"
+            ],
+            "raking_config": {
+                "apply_raking": false
+            }
+        },
+        "analysis_config": {
+            "run_analysis": true,
+            "test_size": 0.3,
+            "random_state": 42,
+            "model_type": "prediction",
+            "target_variable": "Price",
+            "predictor_variables": [
+                "Colour",
+                "Make",
+                "Doors",
+                "Odometer (KM)"
+            ],
+            "models_to_run": "find_best"
+        }
+    }
+}
